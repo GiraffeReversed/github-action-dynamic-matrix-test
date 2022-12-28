@@ -22,7 +22,7 @@ jobs:
       - name: Generate Matrix
         id: generate-matrix
         run: |
-          echo "versions=[2.13.9,2.14.5,2.15.9]" >> $GITHUB_OUTPUT
+          echo "versions=['2.13.9','2.14.5']" >> $GITHUB_OUTPUT
 
 
   # ------------------------
