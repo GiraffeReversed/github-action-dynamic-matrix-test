@@ -15,7 +15,7 @@ jobs:
       - name: Generate Matrix
         id: generate-matrix
         run: |
-          echo "versions='1,2,3'" >> $GITHUB_OUTPUT
+          echo "versions=[1,2,3]" >> $GITHUB_OUTPUT
   # ------------------------
   my_echo:
     runs-on: ubuntu-latest
