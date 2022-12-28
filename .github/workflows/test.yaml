@@ -25,24 +25,21 @@ jobs:
 #          echo "versions=['2.13.9','2.14.5']" >> $GITHUB_OUTPUT
 
 
-  # ------------------------
-  # my_echo:
-  #   runs-on: ubuntu-latest
-  #   needs:
-  #     - select_pylint_versions
-  #   steps:
-  #     - name: Echo previous outputs
-  #       run: echo "${{ toJSON(needs.select_pylint_versions.outputs) }}"
-  # ------------------------
   test_pylint_compatibility:
     runs-on: ubuntu-latest
     needs:
-      # - my_echo
       - select_pylint_versions
     strategy:
       matrix:
         version: ${{ fromJSON(needs.select_pylint_versions.outputs.versions) }}
     steps:
-      - name: Matrix => ${{ matrix.version}})
+      - name: PyLint ${{ matrix.version}}
         run: |
           echo ${{ matrix.version }}
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+      - run: pip install pylint==${{ matrix.version }}
+      - run: python -m pylint
+      
