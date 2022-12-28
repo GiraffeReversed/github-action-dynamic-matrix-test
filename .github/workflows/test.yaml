@@ -31,6 +31,7 @@ jobs:
       - select_pylint_versions
     strategy:
       fail-fast: false
+      max-parallel: 10
       matrix:
         version: ${{ fromJSON(needs.select_pylint_versions.outputs.versions) }}
     steps:
