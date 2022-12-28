@@ -30,6 +30,7 @@ jobs:
     needs:
       - select_pylint_versions
     strategy:
+      fail-fast: false
       matrix:
         version: ${{ fromJSON(needs.select_pylint_versions.outputs.versions) }}
     steps:
@@ -41,5 +42,5 @@ jobs:
         with:
           python-version: '3.10' 
       - run: pip install pylint==${{ matrix.version }}
-      - run: python -m pylint
+      - run: python -m pylint -h
       
