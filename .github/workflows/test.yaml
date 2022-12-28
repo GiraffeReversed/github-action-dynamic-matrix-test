@@ -15,7 +15,7 @@ jobs:
       - name: Generate Matrix
         id: generate-matrix
         run: |
-          VERSIONS='${{ [1,2,3] }}'
+          VERSIONS='$1,2,3'
           echo ::set-output name=versions::${VERSIONS}
   # ------------------------
   my_echo:
